@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CB569FED-C319-4E0D-A49C-82047A623AD4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{B5E48656-8488-4E64-A62B-523F54B198E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core</RootNamespace>
-    <AssemblyName>Core</AssemblyName>
+    <RootNamespace>Website.Test</RootNamespace>
+    <AssemblyName>Website.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -31,76 +31,66 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>Core.SelfHost</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Host.HttpListener">
-      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.2.1.0\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Owin.Hosting">
       <HintPath>..\packages\Microsoft.Owin.Hosting.2.1.0\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy, Version=0.23.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Owin.Testing">
+      <HintPath>..\packages\Microsoft.Owin.Testing.2.1.0\lib\net45\Microsoft.Owin.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.0.23.0\lib\net40\Nancy.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Bootstrappers.Autofac">
-      <HintPath>..\packages\Nancy.Bootstrappers.Autofac.0.23.0\lib\net40\Nancy.Bootstrappers.Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Owin">
-      <HintPath>..\packages\Nancy.Owin.0.23.0\lib\net40\Nancy.Owin.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoreStartup.cs" />
-    <Compile Include="CustomBootstrapper.cs" />
-    <Compile Include="InfoModule.cs" />
+    <Compile Include="ConfigrTest.cs" />
+    <Compile Include="WebsiteInfoModuleGetTest.cs" />
+    <Compile Include="WebsiteInfoControllerGetTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelfHost.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DependencyInjection\DependencyInjection.csproj">
-      <Project>{974eea50-f0f7-4bcc-8000-f7c29d2cf886}</Project>
-      <Name>DependencyInjection</Name>
+    <ProjectReference Include="..\Website\Website.csproj">
+      <Project>{49b96280-4af4-43cc-8764-e5deafbd86a8}</Project>
+      <Name>Website</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utilities.Contract\Utilities.Contract.csproj">
-      <Project>{1921066e-d611-48ca-94a8-b9048f75b2c2}</Project>
-      <Name>Utilities.Contract</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -4,8 +4,6 @@ using Common;
 
 CommonConfiguration config = new CommonConfiguration();// type is defined in SalesApplication.Common
 
-string guid = Guid.NewGuid().ToString();
-
-config.Info  = guid;
+config.Info  = "Yoda";
 
 Add("Configuration", config);

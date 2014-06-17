@@ -41,8 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.4.1\lib\net40\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -70,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebAppStartup.cs" />
+    <Compile Include="WebsiteStartup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

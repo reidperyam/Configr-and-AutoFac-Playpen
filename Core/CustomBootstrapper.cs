@@ -20,10 +20,5 @@
         {
             return _lifetimeScope;
         }
-
-        protected override DiagnosticsConfiguration DiagnosticsConfiguration
-        {
-            get { return new DiagnosticsConfiguration { Password = @"hi" }; }
-        }
     }
 }

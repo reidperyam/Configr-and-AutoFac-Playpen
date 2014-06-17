@@ -6,7 +6,7 @@
     using DependencyInjection;
     using Owin;
 
-    public class WebAppStartup
+    public class WebsiteStartup
     {
         public void Configuration(IAppBuilder app)
         {
