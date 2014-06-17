@@ -1,16 +1,9 @@
-ConfigrRepro
-============
+## ConfigrRepro
 
 A .sln containing multiple, modular OWIN applications consuming a common configr .csx for the sake of reproducing unexpected functionality.
 
-
-Overview of Projects
-====================
-
-
-API
-=======
-
+### Overview of Projects
+#### API
   Web API 
   
   The API .csproj can either be executed as an OWIN self-hosted console application (in VS right-click & "Set as StartUp Project") or
@@ -19,9 +12,7 @@ API
   When self-hosting (right-click, "Set as StartUp Project") is accessible via http://localhost:4445/api/info
 
 
-Core
-=======
-
+#### Core
   NancyFx
   
   The Core .csproj can either be executed as an OWIN self-hosted console application (in VS right-click & "Set as StartUp Project") or
@@ -29,10 +20,7 @@ Core
   
   When self-hosting (right-click, "Set as StartUp Project") is accessible via http://localhost:4446/info
 
-
-Website
-=======
-
+#### Website
   The website project daisy chains the other two applications via OWIN.
   
       Website.csproj  : Website.WebsiteStartup (see reference from AssemblyInfo)
@@ -44,20 +32,17 @@ Website
   accessible via http://localhost:4444/api/info
                  http://localhost:4444/info
                
-Overview of Configr
-====================
-
-  Each of the projects, above, consumes a Configr/Scriptcs .csx configuration file which drives dependencyInjection type registration.
+#### Configr Implementation
+  Each of the projects, above, consumes a Configr/Scriptcs .csx configuration file which drives dependencyInjection type registration. The implementation simply chooses a .csx file based on DEBUG/RELEASE config.
+  
   See 
   
   Configuration.csproj (Configr)
   DependencyInjection.csproj (AutoFac)
 
 
-Configuration & DI Flow
-=======================
-
-
+#### Configuration & DI Flow
+```
 On Start: Configuration.Configurator.cs ( loads .csx configuration )
   |
   | Depending on application context:
@@ -74,10 +59,8 @@ On Start: Configuration.Configurator.cs ( loads .csx configuration )
                  Core.CoreStartup
                   or
                  Website.WebsiteStartup(calls ApiStartup, CoreStartup)
-            
-Issues
-=======
-      
+```
+### Issues
 Repro Steps For Encountered Issues:
 
   (Before proceeding verify successful build of ConfigrRepro.sln projects in DEBUG mode)
@@ -113,9 +96,12 @@ Repro Steps For Encountered Issues:
       This however breaks the other, self-hosted console apps that consume the .csx file from their bin directories: Api.cspoj and Core.csproj.
 
             
-Questions: (Issue 2) Is there an elegant work around that allows both the Website.csproj and shared consumers of the .csx files to load them?
-           (Issue 2) Can Configr be enhanced to support loading from either /bin/ or base directory?
-           (Issue 1) What process causes .csx files to be purged on application startup intermittantly?
+##Questions: 
+1. Is there an elegant work around that allows both the Website.csproj and other, shared consumers of the .csx files to load them?
+2. Can Configr be enhanced to support loading from either /bin/ or base directory?
+3. What process causes .csx files to be intermittantly purged on application startup?
+4. Why does simply Building a .csproj not copy the dependant, "Copy Always" content to the application's execution directory?
+           
            
            
 
