@@ -5,63 +5,71 @@
     using Utilities;
     using Utilities.Contract;
 
+    public enum RegistrationStrategy : uint { DISCRETE=0, INHERIT, REUSE, GLOBAL }
+
     public class RegisterTypes
     {
-        // support capability to allow a single, shared DI container between components that registers types and instances not dependant on configuration
-        public ILifetimeScope Shared()
+        static IContainer       _globalLifetimeScope;
+        static ContainerBuilder _globalContainerBuilder;
+
+        // create a static container of global types and instance registrations (RegistrationStrategy.GLOBAL)
+        private static ILifetimeScope GlobalContainer()
+        {
+            if (_globalLifetimeScope == null)
+            {
+                _globalContainerBuilder = new ContainerBuilder();
+
+                // todo - type and instance registrations for static, global consumption...
+
+                _globalLifetimeScope = _globalContainerBuilder.Build();
+            }
+            return _globalLifetimeScope;
+        }
+
+        // create a copied ContainerBuilder of shared type and instance registrations (RegistrationStrategy.INHERIT)
+        private ContainerBuilder CopySharedContainer()
         {
             ContainerBuilder containerBuilder = new ContainerBuilder();
 
-            // todo - define types and instances shared between API & Core          
-            return containerBuilder.Build();
+            // todo - type and instance registrations for multiple consumers       
+   
+            return containerBuilder;
         }
 
-        // define injected types specific to the Api
-        public ILifetimeScope ForApi(Configuration configuration)
-        {          
-            ContainerBuilder containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterType<ApiInfo>().As<IInfo>().WithParameter("iinfo", new Info(configuration.Info, configuration.AuthenticationEnabled)).InstancePerLifetimeScope();
-            return containerBuilder.Build();
-        }
-
-        public void ForApiInherit(Configuration configuration, ILifetimeScope lifetimeScope)
+        public ILifetimeScope ForApi(Configuration configuration, RegistrationStrategy registrationStrategy = RegistrationStrategy.DISCRETE, ILifetimeScope sharedLifetimeScope = null)
         {
             ContainerBuilder containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterType<ApiInfo>().As<IInfo>().WithParameter("iinfo", new Info(configuration.Info, configuration.AuthenticationEnabled)).InstancePerLifetimeScope();
-            containerBuilder.Update(lifetimeScope.ComponentRegistry);
+            return CreateContainer(containerBuilder, configuration, registrationStrategy, sharedLifetimeScope);
         }
 
-        // define injected types specific to the Api and integrate additional shared
-        public ILifetimeScope ForApiDaisyChain(Configuration configuration, ILifetimeScope lifetimeScope)
-        {
-            ContainerBuilder containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterType<ApiInfo>().As<IInfo>().WithParameter("iinfo", new Info(configuration.Info, configuration.AuthenticationEnabled)).InstancePerLifetimeScope();
-            containerBuilder.Update(lifetimeScope.ComponentRegistry);
-            return lifetimeScope;
-        }
-
-        // define injected types specific to the Core
-        public ILifetimeScope ForCore(Configuration configuration)
+        public ILifetimeScope ForCore(Configuration configuration, RegistrationStrategy registrationStrategy = RegistrationStrategy.DISCRETE, ILifetimeScope sharedLifetimeScope = null)
         {
             ContainerBuilder containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterType<CoreInfo>().As<IInfo>().WithParameter("iinfo", new Info(configuration.Info, configuration.AuthenticationEnabled)).InstancePerLifetimeScope();
-            return containerBuilder.Build();
+            return CreateContainer(containerBuilder, configuration, registrationStrategy, sharedLifetimeScope);
         }
 
-        public void ForCoreInherit(Configuration configuration, ILifetimeScope inheritedScope)
+        public ILifetimeScope CreateContainer(ContainerBuilder containerBuilder, Configuration configuration, RegistrationStrategy registrationStrategy, ILifetimeScope sharedLifetimeScope)
         {
-            ContainerBuilder containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterType<CoreInfo>().As<IInfo>().WithParameter("iinfo", new Info(configuration.Info, configuration.AuthenticationEnabled)).InstancePerLifetimeScope();
-            containerBuilder.Update(inheritedScope.ComponentRegistry);
-        }
+            switch(registrationStrategy)
+            {
+                default /*Discrete*/: return containerBuilder.Build(); // create a new container with the component registrations that have been made
 
-        // consume shared registrations and define others to be shared through the application pipeline
-        public ILifetimeScope ForCoreDaisyChain(Configuration configuration, ILifetimeScope lifetimeScope)
-        {
-            ContainerBuilder containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterType<CoreInfo>().As<IInfo>().WithParameter("iinfo", new Info(configuration.Info, configuration.AuthenticationEnabled)).InstancePerLifetimeScope();
-            containerBuilder.Update(lifetimeScope.ComponentRegistry);
-            return lifetimeScope;
+                case RegistrationStrategy.INHERIT: // merge containerBuilder with a copy of shared registrations and return it
+                                                   ILifetimeScope inheritedLifetimeScope = containerBuilder.Build();
+                                                   CopySharedContainer().Update(inheritedLifetimeScope.ComponentRegistry);
+                                                   return inheritedLifetimeScope;
+
+                case RegistrationStrategy.REUSE: // merge containerBuilder with argument container; return for subsequent consumers to do the same
+                                                 containerBuilder.Update(sharedLifetimeScope.ComponentRegistry);
+                                                 return sharedLifetimeScope;
+
+                case RegistrationStrategy.GLOBAL: // mergecontainerBuilder with the global container and return it
+                                                  ILifetimeScope globalLifetimeScope = GlobalContainer();
+                                                  containerBuilder.Update(globalLifetimeScope.ComponentRegistry);
+                                                  return globalLifetimeScope;
+            }
         }
     }
 }
