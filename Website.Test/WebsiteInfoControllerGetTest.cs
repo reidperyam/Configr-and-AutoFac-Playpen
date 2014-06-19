@@ -62,9 +62,9 @@
         {
             dynamic result = _response.Content.ReadAsAsync<dynamic>().Result;
 #if DEBUG
-            Assert.AreEqual("Api's Info: From Api.Debug.csx AuthenticationEnabled: False", result);
+            Assert.AreEqual("Api's Info: From Web.Debug.csx AuthenticationEnabled: False", result);
 #else
-            Assert.AreEqual("Api's Info: From Api.Release.csx AuthenticationEnabled: True", result);
+            Assert.AreEqual("Api's Info: From Web.Release.csx AuthenticationEnabled: True", result);
 #endif
         }
     }

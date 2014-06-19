@@ -62,9 +62,9 @@
         {
             string result = _response.Content.ReadAsStringAsync().Result;
 #if DEBUG
-            Assert.AreEqual("Core's Info: From Core.Debug.csx AuthenticationEnabled: False", result);
+            Assert.AreEqual("Core's Info: From Web.Debug.csx AuthenticationEnabled: False", result);
 #else
-            Assert.AreEqual("Core's Info: From Core.Release.csx AuthenticationEnabled: True", result);
+            Assert.AreEqual("Core's Info: From Web.Release.csx AuthenticationEnabled: True", result);
 #endif
         }
     }
