@@ -40,17 +40,17 @@
         {
             ContainerBuilder containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterType<ApiInfo>().As<IInfo>().WithParameter("iinfo", new Info(configuration.Info, configuration.AuthenticationEnabled)).InstancePerLifetimeScope();
-            return CreateContainer(containerBuilder, configuration, registrationStrategy, sharedLifetimeScope);
+            return CreateContainer(containerBuilder, registrationStrategy, sharedLifetimeScope);
         }
 
         public ILifetimeScope ForCore(Configuration configuration, RegistrationStrategy registrationStrategy = RegistrationStrategy.DISCRETE, ILifetimeScope sharedLifetimeScope = null)
         {
             ContainerBuilder containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterType<CoreInfo>().As<IInfo>().WithParameter("iinfo", new Info(configuration.Info, configuration.AuthenticationEnabled)).InstancePerLifetimeScope();
-            return CreateContainer(containerBuilder, configuration, registrationStrategy, sharedLifetimeScope);
+            return CreateContainer(containerBuilder, registrationStrategy, sharedLifetimeScope);
         }
 
-        public ILifetimeScope CreateContainer(ContainerBuilder containerBuilder, Configuration configuration, RegistrationStrategy registrationStrategy, ILifetimeScope sharedLifetimeScope)
+        public ILifetimeScope CreateContainer(ContainerBuilder containerBuilder, RegistrationStrategy registrationStrategy, ILifetimeScope sharedLifetimeScope)
         {
             switch(registrationStrategy)
             {
