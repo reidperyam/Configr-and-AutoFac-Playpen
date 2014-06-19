@@ -9,8 +9,9 @@
 
     public class RegisterTypesAndInstances
     {
-        static IContainer       _globalLifetimeScope;
-        static ContainerBuilder _globalContainerBuilder;
+        static IContainer          _globalLifetimeScope;
+        static ContainerBuilder    _globalContainerBuilder;
+        const RegistrationStrategy DEFAULT_REGISTRATION_STRATEGY = RegistrationStrategy.DISCRETE;
 
         // create a static container of global types and instance registrations (RegistrationStrategy.GLOBAL)
         private static ILifetimeScope GlobalContainer()
@@ -36,14 +37,18 @@
             return containerBuilder;
         }
 
-        public ILifetimeScope ForApi(Configuration configuration, RegistrationStrategy registrationStrategy = RegistrationStrategy.DISCRETE, ILifetimeScope sharedLifetimeScope = null)
+        public ILifetimeScope ForApi(Configuration configuration, 
+                                     RegistrationStrategy registrationStrategy = DEFAULT_REGISTRATION_STRATEGY, 
+                                     ILifetimeScope sharedLifetimeScope = null)
         {
             ContainerBuilder containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterType<ApiInfo>().As<IInfo>().WithParameter("iinfo", new Info(configuration.Info, configuration.AuthenticationEnabled)).InstancePerLifetimeScope();
             return CreateContainer(containerBuilder, registrationStrategy, sharedLifetimeScope);
         }
 
-        public ILifetimeScope ForCore(Configuration configuration, RegistrationStrategy registrationStrategy = RegistrationStrategy.DISCRETE, ILifetimeScope sharedLifetimeScope = null)
+        public ILifetimeScope ForCore(Configuration configuration, 
+                                      RegistrationStrategy registrationStrategy = DEFAULT_REGISTRATION_STRATEGY, 
+                                      ILifetimeScope sharedLifetimeScope = null)
         {
             ContainerBuilder containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterType<CoreInfo>().As<IInfo>().WithParameter("iinfo", new Info(configuration.Info, configuration.AuthenticationEnabled)).InstancePerLifetimeScope();
@@ -54,7 +59,7 @@
         {
             switch(registrationStrategy)
             {
-                default /*Discrete*/: return containerBuilder.Build(); // create a new container with the component registrations that have been made
+                default /*DISCRETE*/: return containerBuilder.Build(); // create a new container with the component registrations that have been made
 
                 case RegistrationStrategy.INHERIT: // merge containerBuilder with a copy of shared registrations and return it
                                                    ILifetimeScope inheritedLifetimeScope = containerBuilder.Build();
@@ -62,6 +67,8 @@
                                                    return inheritedLifetimeScope;
 
                 case RegistrationStrategy.REUSE: // merge containerBuilder with argument container; return for subsequent consumers to do the same
+                                                 if(sharedLifetimeScope == null) 
+                                                     throw new System.ArgumentNullException("sharedLifetimeScope","RegistrationStrategy.REUSE requires argument sharedLifetimeScope");
                                                  containerBuilder.Update(sharedLifetimeScope.ComponentRegistry);
                                                  return sharedLifetimeScope;
 
