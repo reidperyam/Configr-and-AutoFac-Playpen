@@ -9,7 +9,10 @@
 
         public InfoModule(IInfo iinfo)
         {
-            Get["/info"] = _ => iinfo.Info;
+            Get["/info"] = _ =>
+            {
+                return iinfo.Info;
+            };
         }
     }
 }

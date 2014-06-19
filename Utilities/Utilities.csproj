@@ -36,7 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiInfo.cs" />
-    <Compile Include="WebsiteInfo.cs" />
     <Compile Include="CoreInfo.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

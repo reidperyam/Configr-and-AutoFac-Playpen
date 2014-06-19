@@ -65,7 +65,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigrTest.cs" />
     <Compile Include="WebsiteInfoModuleGetTest.cs" />
     <Compile Include="WebsiteInfoControllerGetTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,8 +72,22 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <Content Include="Web.Debug.csx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.Release.csx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Api\Api.csproj">
+      <Project>{a3ffeb01-84c2-4283-96d4-05691fd05dfb}</Project>
+      <Name>Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{cb569fed-c319-4e0d-a49c-82047a623ad4}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Website\Website.csproj">
       <Project>{49b96280-4af4-43cc-8764-e5deafbd86a8}</Project>
       <Name>Website</Name>

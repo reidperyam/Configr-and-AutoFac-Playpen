@@ -1,19 +1,11 @@
 ﻿namespace Website.Test
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using NUnit.Framework;
     using Microsoft.Owin.Testing;
+    using NUnit.Framework;
+    using System;
     using System.Net;
     using System.Net.Http;
-    using System.Net.Http.Formatting;
-    using System.Net.Http.Headers;
     using Website;
-    using System.Reflection;
-    using Newtonsoft.Json.Serialization;
 
     [TestFixture]
     public class WebsiteInfoControllerGetTest
@@ -24,7 +16,7 @@
 
         public WebsiteInfoControllerGetTest()
         {
-            _apiServer = TestServer.Create<WebsiteStartup>();
+            _apiServer = TestServer.Create(new WebsiteStartup().Configuration);
             _client = _apiServer.HttpClient;
             _client.BaseAddress = new Uri("https://localhost:4445/");
         }
@@ -70,9 +62,9 @@
         {
             dynamic result = _response.Content.ReadAsAsync<dynamic>().Result;
 #if DEBUG
-            Assert.AreEqual("Website's Info: Vader", result);
+            Assert.AreEqual("Api's Info: From Api.Debug.csx AuthenticationEnabled: False", result);
 #else
-            Assert.AreEqual("Website's Info: Yoda", result);
+            Assert.AreEqual("Api's Info: From Api.Release.csx AuthenticationEnabled: True", result);
 #endif
         }
     }

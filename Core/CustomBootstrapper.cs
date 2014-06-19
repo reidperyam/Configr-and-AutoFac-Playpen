@@ -2,7 +2,6 @@
 {
     using Autofac;
     using Nancy.Bootstrappers.Autofac;
-    using Nancy.Diagnostics;
 
     public class CustomBootstrapper : AutofacNancyBootstrapper
     {

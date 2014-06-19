@@ -49,10 +49,6 @@
       <Project>{cd2882bb-1d0c-4190-a7a2-9b1b2650fe05}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Configuration\Configuration.csproj">
-      <Project>{1c9bd370-b497-4340-a663-5cc3b0108da5}</Project>
-      <Name>Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Utilities.Contract\Utilities.Contract.csproj">
       <Project>{1921066e-d611-48ca-94a8-b9048f75b2c2}</Project>
       <Name>Utilities.Contract</Name>

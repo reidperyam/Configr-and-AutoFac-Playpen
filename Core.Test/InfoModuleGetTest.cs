@@ -4,7 +4,6 @@
     using Nancy;
     using Nancy.Testing;
     using NUnit.Framework;
-    using DependencyInjection;
 
     [TestFixture]
     public class InfoModuleGetTest
@@ -14,7 +13,7 @@
 
         public InfoModuleGetTest()
         {
-            _browser = new Browser(new CustomBootstrapper(new RegisterTypes().ForCore()));
+            _browser = new Browser(new CustomBootstrapper(new CoreStartup().ILifetimeScope));
         }
 
         [TestFixtureSetUp]
@@ -49,9 +48,9 @@
         {
             string responseText = _browserResponse.Body.AsString();
 #if DEBUG
-            Assert.AreEqual("Core's Info: Vader", responseText);
+            Assert.AreEqual("Core's Info: From Core.Debug.csx AuthenticationEnabled: False", responseText);
 #else
-            Assert.AreEqual("Core's Info: Yoda", _browserResponse.Body);
+            Assert.AreEqual("Core's Info: From Core.Release.csx AuthenticationEnabled: True", responseText);
 #endif
         }
     }

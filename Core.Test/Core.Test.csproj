@@ -57,11 +57,14 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigrTest.cs" />
     <Compile Include="InfoModuleGetTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{cd2882bb-1d0c-4190-a7a2-9b1b2650fe05}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{cb569fed-c319-4e0d-a49c-82047a623ad4}</Project>
       <Name>Core</Name>

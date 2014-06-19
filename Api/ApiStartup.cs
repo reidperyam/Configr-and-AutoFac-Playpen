@@ -4,17 +4,28 @@
     using DependencyInjection;
     using Owin;
     using System.Web.Http;
+    using Common;
+    using ConfigR;
 
     public class ApiStartup
     {
         private ILifetimeScope _lifetimeScope;
 
+        public ILifetimeScope ILifetimeScope { get { return _lifetimeScope; } }
+
+        public ApiStartup()
+        {
+#if DEBUG
+            Config.Global.LoadScriptFile("Api.Debug.csx");
+#else
+            Config.Global.LoadScriptFile("Api.Release.csx");
+#endif
+            _lifetimeScope = new RegisterTypes().ForApi(Config.Global.Get<Configuration>("ApiConfiguration"));
+        }
+
         public ApiStartup(ILifetimeScope lifetimeScope)
         {
-            if (lifetimeScope != null) // if inheriting ...
-                _lifetimeScope = lifetimeScope;
-            else // if self-hosted...
-                _lifetimeScope = new RegisterTypes().ForApi(); 
+            _lifetimeScope = lifetimeScope;
         }
 
         public void Configuration(IAppBuilder app)

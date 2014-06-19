@@ -22,7 +22,7 @@
 
         public InfoControllerGetTest()
         {
-            _apiServer = TestServer.Create<ApiStartup>();
+            _apiServer = TestServer.Create(new ApiStartup().Configuration);
             _client = _apiServer.HttpClient;
             _client.BaseAddress = new Uri("https://localhost:4445/");
         }
@@ -68,9 +68,9 @@
         {
             dynamic result = _response.Content.ReadAsAsync<dynamic>().Result;
 #if DEBUG
-            Assert.AreEqual("Api's Info: Vader", result);
+            Assert.AreEqual("Api's Info: From Api.Debug.csx AuthenticationEnabled: False", result);
 #else
-            Assert.AreEqual("Api's Info: Yoda", result);
+            Assert.AreEqual("Api's Info: From Api.Release.csx AuthenticationEnabled: True", result);
 #endif
         }
     }

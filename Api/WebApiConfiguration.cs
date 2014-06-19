@@ -19,7 +19,7 @@
             config.EnableSystemDiagnosticsTracing();
             config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             config.EnableCors();
-           config.MapHttpAttributeRoutes();
+            config.MapHttpAttributeRoutes();
         }
 
         public static void ConfigureAutofac(HttpConfiguration config, ILifetimeScope lifetimeScope)

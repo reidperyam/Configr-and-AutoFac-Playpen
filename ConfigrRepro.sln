@@ -16,8 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{49B96280-4AF4-43CC-8764-E5DEAFBD86A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "Configuration\Configuration.csproj", "{1C9BD370-B497-4340-A663-5CC3B0108DA5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{CD2882BB-1D0C-4190-A7A2-9B1B2650FE05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{974EEA50-F0F7-4BCC-8000-F7C29D2CF886}"
@@ -50,10 +48,6 @@ Global
 		{49B96280-4AF4-43CC-8764-E5DEAFBD86A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49B96280-4AF4-43CC-8764-E5DEAFBD86A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49B96280-4AF4-43CC-8764-E5DEAFBD86A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C9BD370-B497-4340-A663-5CC3B0108DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C9BD370-B497-4340-A663-5CC3B0108DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C9BD370-B497-4340-A663-5CC3B0108DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C9BD370-B497-4340-A663-5CC3B0108DA5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD2882BB-1D0C-4190-A7A2-9B1B2650FE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD2882BB-1D0C-4190-A7A2-9B1B2650FE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD2882BB-1D0C-4190-A7A2-9B1B2650FE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
