@@ -7,7 +7,7 @@
 
     public enum RegistrationStrategy : uint { DISCRETE=0, INHERIT, REUSE, GLOBAL }
 
-    public class RegisterTypes
+    public class RegisterTypesAndInstances
     {
         static IContainer       _globalLifetimeScope;
         static ContainerBuilder _globalContainerBuilder;

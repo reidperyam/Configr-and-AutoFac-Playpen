@@ -26,8 +26,8 @@
 
         public void Configuration(IAppBuilder app)
         {
-            new ApiStartup( new RegisterTypes().ForApi( _apiConfiguration,  RegistrationStrategy.INHERIT)).Configuration(app);
-            new CoreStartup(new RegisterTypes().ForCore(_coreConfiguration, RegistrationStrategy.INHERIT)).Configuration(app);                  
+            new ApiStartup( new RegisterTypesAndInstances().ForApi( _apiConfiguration,  RegistrationStrategy.INHERIT)).Configuration(app);
+            new CoreStartup(new RegisterTypesAndInstances().ForCore(_coreConfiguration, RegistrationStrategy.INHERIT)).Configuration(app);                  
         }
     }
 }
