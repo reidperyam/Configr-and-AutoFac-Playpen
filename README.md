@@ -1,6 +1,6 @@
 ## Configr-and-AutoFac-Playpen
 
-A .sln containing multiple, modular OWIN applications using ConfigR to dynamically configure applications and IoC containers.
+A .sln containing multiple, modular OWIN applications using ConfigR for dynamic configuration and IoC registration.
 
 ### Overview of Projects
 #### API
