@@ -20,7 +20,7 @@
 #else
             Config.Global.LoadScriptFile("Api.Release.csx");
 #endif
-            _lifetimeScope = new RegisterTypesAndInstances().ForApi(Config.Global.Get<Configuration>("ApiConfiguration"));
+            _lifetimeScope = new RegisterTypesAndInstances().ForApi(Config.Global.Get<ApiConfiguration>("ApiConfiguration"));
         }
 
         public ApiStartup(ILifetimeScope lifetimeScope)

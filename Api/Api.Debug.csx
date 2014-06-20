@@ -2,7 +2,7 @@
 
 using Common;
 
-Configuration apiConfiguration = new Configuration();// type is defined in Common
+ApiConfiguration apiConfiguration = new ApiConfiguration();// type is defined in Common
 
 apiConfiguration.Info = "From Api.Debug.csx";
 apiConfiguration.AuthenticationEnabled = false;

@@ -2,7 +2,7 @@
 
 using Common;
 
-Configuration coreConfiguration = new Configuration();// type is defined in Common
+CoreConfiguration coreConfiguration = new CoreConfiguration();// type is defined in Common
 
 coreConfiguration.Info = "From Core.Debug.csx";
 coreConfiguration.AuthenticationEnabled = false;

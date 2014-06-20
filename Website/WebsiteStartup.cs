@@ -10,8 +10,7 @@
 
     public class WebsiteStartup
     {
-        Configuration _coreConfiguration;
-        Configuration _apiConfiguration;
+        WebsiteConfiguration _websiteConfiguration;
 
         public WebsiteStartup()
         {
@@ -20,14 +19,13 @@
 #else
             Config.Global.LoadScriptFile("Web.Release.csx");
 #endif           
-            _coreConfiguration = Config.Global.Get<Configuration>("CoreConfiguration"); // loaded from bin/Core.*.csx
-            _apiConfiguration  = Config.Global.Get<Configuration>("ApiConfiguration");  // loaded from bin/Api.*.csx
+            _websiteConfiguration = Config.Global.Get<WebsiteConfiguration>("WebsiteConfiguration"); 
         }
 
         public void Configuration(IAppBuilder app)
         {
-            new ApiStartup( new RegisterTypesAndInstances().ForApi( _apiConfiguration,  RegistrationStrategy.INHERIT)).Configuration(app);
-            new CoreStartup(new RegisterTypesAndInstances().ForCore(_coreConfiguration, RegistrationStrategy.INHERIT)).Configuration(app);                  
+            new ApiStartup (new RegisterTypesAndInstances().ForApi( _websiteConfiguration.ApiConfiguration,  RegistrationStrategy.INHERIT)).Configuration(app);
+            new CoreStartup(new RegisterTypesAndInstances().ForCore(_websiteConfiguration.CoreConfiguration, RegistrationStrategy.INHERIT)).Configuration(app);                  
         }
     }
 }

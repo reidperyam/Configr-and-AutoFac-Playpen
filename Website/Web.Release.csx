@@ -14,3 +14,8 @@ if(overwriteComponentConfigs)
 	coreConfiguration.AuthenticationEnabled = authenticationEnabled;
 }
 
+WebsiteConfiguration websiteConfiguration = new WebsiteConfiguration();
+websiteConfiguration.ApiConfiguration     = apiConfiguration;
+websiteConfiguration.CoreConfiguration    = coreConfiguration;
+
+Add("WebsiteConfiguration", websiteConfiguration);

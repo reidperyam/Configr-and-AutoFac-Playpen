@@ -21,7 +21,7 @@
 #else
             Config.Global.LoadScriptFile("Core.Release.csx");
 #endif
-            _lifetimeScope = new RegisterTypesAndInstances().ForCore(Config.Global.Get<Configuration>("CoreConfiguration"));
+            _lifetimeScope = new RegisterTypesAndInstances().ForCore(Config.Global.Get<CoreConfiguration>("CoreConfiguration"));
         }
 
         public CoreStartup(ILifetimeScope lifetimeScope)

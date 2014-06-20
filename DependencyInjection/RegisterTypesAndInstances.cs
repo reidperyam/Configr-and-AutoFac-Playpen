@@ -37,7 +37,7 @@
             return containerBuilder;
         }
 
-        public ILifetimeScope ForApi(Configuration configuration, 
+        public ILifetimeScope ForApi(ApiConfiguration configuration, 
                                      RegistrationStrategy registrationStrategy = DEFAULT_REGISTRATION_STRATEGY, 
                                      ILifetimeScope sharedLifetimeScope = null)
         {
@@ -46,7 +46,7 @@
             return CreateContainer(containerBuilder, registrationStrategy, sharedLifetimeScope);
         }
 
-        public ILifetimeScope ForCore(Configuration configuration, 
+        public ILifetimeScope ForCore(CoreConfiguration configuration, 
                                       RegistrationStrategy registrationStrategy = DEFAULT_REGISTRATION_STRATEGY, 
                                       ILifetimeScope sharedLifetimeScope = null)
         {

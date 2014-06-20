@@ -9,7 +9,7 @@
     {
         static void Main(string[] args)
         {
-            Console.Title = "Self-Hosted Nancy";
+            Console.Title = "Self-Hosted NancyFx";
             string baseAddress = "http://localhost:4446/";
             LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter(LogLevel.Info, false, true, true, null);
 
@@ -17,7 +17,6 @@
             using (WebApp.Start(url: baseAddress, startup: new CoreStartup().Configuration))
             {
                 Console.ForegroundColor = ConsoleColor.White;
-
                 Console.WriteLine("NancyFx is up and running @ " + baseAddress.ToUpper());
                 Console.ReadLine();
             }

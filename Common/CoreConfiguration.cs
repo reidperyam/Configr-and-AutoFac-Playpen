@@ -1,6 +1,6 @@
 ﻿namespace Common
 {
-    public class Configuration
+    public class CoreConfiguration
     {
         public string Info { get; set; }
         public bool AuthenticationEnabled { get; set; }
