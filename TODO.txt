@@ -1,0 +1,3 @@
+Implement AutoFac modules : https://github.com/autofac/Autofac/wiki/Structuring-With-Modules
+Add new .csprojs, Server and Server.Test
+Implement AutoFac.Owin : http://alexmg.com/owin-support-for-the-web-api-2-and-mvc-5-integrations-in-autofac/
