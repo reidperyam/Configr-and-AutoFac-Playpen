@@ -1,4 +1,4 @@
-﻿#r "Common.dll"
+﻿#r "bin/Common.dll"
 
 using Common;
 

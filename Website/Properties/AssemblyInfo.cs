@@ -25,4 +25,4 @@ using Website;
 [assembly: Guid("a4493542-3439-4a05-8b99-c843a07b8e0e")]
 
 // This kicks off the OWIN pipeline using Startup class defined in a separate assembly/namespace
-[assembly: OwinStartup(typeof(WebsiteStartup))]
+[assembly: OwinStartup("Website",typeof(WebsiteStartup))]

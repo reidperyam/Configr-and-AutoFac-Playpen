@@ -70,6 +70,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Core.Test\Core.Debug.csx">
+      <Link>Core.Debug.csx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Core.Test\Core.Release.csx">
+      <Link>Core.Release.csx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="app.config" />
     <None Include="packages.config" />
     <Content Include="Web.Debug.csx">
@@ -83,10 +91,6 @@
     <ProjectReference Include="..\Api\Api.csproj">
       <Project>{a3ffeb01-84c2-4283-96d4-05691fd05dfb}</Project>
       <Name>Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{cb569fed-c319-4e0d-a49c-82047a623ad4}</Project>
-      <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Website\Website.csproj">
       <Project>{49b96280-4af4-43cc-8764-e5deafbd86a8}</Project>

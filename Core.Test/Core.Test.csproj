@@ -66,7 +66,7 @@
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{cb569fed-c319-4e0d-a49c-82047a623ad4}</Project>
+      <Project>{e7feae54-378f-4e6c-943c-bd2a26893053}</Project>
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\DependencyInjection\DependencyInjection.csproj">
@@ -76,6 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="Core.Debug.csx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Core.Release.csx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
