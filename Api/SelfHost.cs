@@ -14,7 +14,7 @@
             LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter(LogLevel.Info, false, true, true, null);
 
             // Start OWIN host 
-            using (WebApp.Start(url: baseAddress, startup: new ApiStartup().Configuration))
+            using (WebApp.Start(url: baseAddress, startup: new Startup().Configuration))
             {
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("ASP.NET Web API is up and running @ " + baseAddress.ToUpper());

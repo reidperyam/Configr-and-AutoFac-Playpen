@@ -22,7 +22,7 @@
 
         public InfoControllerGetTest()
         {
-            _apiServer = TestServer.Create(new ApiStartup().Configuration);
+            _apiServer = TestServer.Create(new Startup().Configuration);
             _client = _apiServer.HttpClient;
             _client.BaseAddress = new Uri("https://localhost:4445/");
         }

@@ -13,7 +13,7 @@
 
         public InfoModuleGetTest()
         {
-            _browser = new Browser(new CustomBootstrapper(new CoreStartup().ILifetimeScope));
+            _browser = new Browser(new CustomBootstrapper(new Startup().ILifetimeScope));
         }
 
         [TestFixtureSetUp]

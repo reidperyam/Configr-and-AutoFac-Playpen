@@ -8,13 +8,13 @@
     using Nancy.Owin;
     using Owin;
 
-    public class CoreStartup
+    public class Startup
     {
         private ILifetimeScope _lifetimeScope;
 
         public ILifetimeScope ILifetimeScope { get { return _lifetimeScope; } }
 
-        public CoreStartup()
+        public Startup()
         {
 #if DEBUG
             Config.Global.LoadScriptFile("Core.Debug.csx");
@@ -24,7 +24,7 @@
             _lifetimeScope = new RegisterTypesAndInstances().ForCore(Config.Global.Get<CoreConfiguration>("CoreConfiguration"));
         }
 
-        public CoreStartup(ILifetimeScope lifetimeScope)
+        public Startup(ILifetimeScope lifetimeScope)
         {
              _lifetimeScope = lifetimeScope;
         }

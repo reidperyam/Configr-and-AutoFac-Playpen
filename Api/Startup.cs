@@ -7,13 +7,13 @@
     using Common;
     using ConfigR;
 
-    public class ApiStartup
+    public class Startup
     {
         private ILifetimeScope _lifetimeScope;
 
         public ILifetimeScope ILifetimeScope { get { return _lifetimeScope; } }
 
-        public ApiStartup()
+        public Startup()
         {
 #if DEBUG
             Config.Global.LoadScriptFile("Api.Debug.csx");
@@ -23,7 +23,7 @@
             _lifetimeScope = new RegisterTypesAndInstances().ForApi(Config.Global.Get<ApiConfiguration>("ApiConfiguration"));
         }
 
-        public ApiStartup(ILifetimeScope lifetimeScope)
+        public Startup(ILifetimeScope lifetimeScope)
         {
             _lifetimeScope = lifetimeScope;
         }
